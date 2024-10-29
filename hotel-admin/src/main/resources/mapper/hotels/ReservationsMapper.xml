@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.hotels.mapper.ReservationsMapper">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.ReservationsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.hotels.entity.Reservations">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Reservations">
         <id column="reservation_id" property="reservationId" />
         <result column="user_id" property="userId" />
         <result column="room_id" property="roomId" />
@@ -13,7 +13,7 @@
         <result column="total_price" property="totalPrice" />
         <result column="created_at" property="createdAt" />
     </resultMap>
-    <resultMap id="ExtendedResultMap" type="com.kalvin.kvf.modules.hotels.entity.Reservations" extends="BaseResultMap">
+    <resultMap id="ExtendedResultMap" type="com.kalvin.hotel.modules.hotels.entity.Reservations" extends="BaseResultMap">
             <result column="hotel_name" property="hotelName"/>
             <result column="type_name" property="typeName" />
             <result column="hotel_id" property="hotelId" />
@@ -23,7 +23,7 @@
        reservation_id, user_id, room_id, check_in_date, check_out_date, status, total_price, created_at
     </sql>
 
-    <select id="selectReservationsList" resultType="com.kalvin.kvf.modules.hotels.entity.Reservations">
+    <select id="selectReservationsList" resultType="com.kalvin.hotel.modules.hotels.entity.Reservations">
         select <include refid="Base_Column_List" /> from reservations
         <trim prefix="where" prefixOverrides="and">
             <if test="reservations.userId != null">

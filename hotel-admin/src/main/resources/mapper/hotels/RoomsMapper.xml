@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.hotels.mapper.RoomsMapper">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.RoomsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.hotels.entity.Rooms">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Rooms">
         <id column="room_id" property="roomId" />
         <result column="room_number" property="roomNumber" />
         <result column="hotel_id" property="hotelId" />
@@ -15,14 +15,14 @@
     </resultMap>
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="ExtendedResultMap" type="com.kalvin.kvf.modules.hotels.entity.Rooms" extends="BaseResultMap">
-        <association property="hotels" column="hotel_id" javaType="com.kalvin.kvf.modules.hotels.entity.Hotels">
+    <resultMap id="ExtendedResultMap" type="com.kalvin.hotel.modules.hotels.entity.Rooms" extends="BaseResultMap">
+        <association property="hotels" column="hotel_id" javaType="com.kalvin.hotel.modules.hotels.entity.Hotels">
             <result column="hotel_name" property="hotelName"/>
             <result column="location" property="location" />
             <result column="rating" property="rating" />
             <result column="description" property="description" />
         </association>
-        <association property="types" column="room_type_id" javaType="com.kalvin.kvf.modules.hotels.entity.Types">
+        <association property="types" column="room_type_id" javaType="com.kalvin.hotel.modules.hotels.entity.Types">
             <id column="room_type_id" property="roomTypeId" />
             <result column="hotel_id" property="hotelId" />
             <result column="type_name" property="typeName" />
@@ -38,7 +38,7 @@
        room_id, room_number, hotel_id, room_type_id, status,cover
     </sql>
 
-    <select id="selectRoomsList" resultType="com.kalvin.kvf.modules.hotels.entity.Rooms">
+    <select id="selectRoomsList" resultType="com.kalvin.hotel.modules.hotels.entity.Rooms">
         select <include refid="Base_Column_List" /> from rooms
         <trim prefix="where" prefixOverrides="and">
             <if test="rooms.roomNumber != null and rooms.roomNumber != ''">
@@ -55,7 +55,7 @@
             </if>
         </trim>
     </select>
-    <select id="getRoomDetails" resultType="com.kalvin.kvf.modules.hotels.entity.Rooms" resultMap="ExtendedResultMap">
+    <select id="getRoomDetails" resultType="com.kalvin.hotel.modules.hotels.entity.Rooms" resultMap="ExtendedResultMap">
         SELECT r.room_id,r.room_number,r.hotel_id,r.cover,rt.type_name,rt.price,rt.description,h.hotel_name,h.rating,h.location,r.status
         from rooms  r left join room_types  rt
                                 on r.room_type_id = rt.room_type_id

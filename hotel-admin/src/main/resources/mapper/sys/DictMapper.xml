@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.sys.mapper.DictMapper">
+<mapper namespace="com.kalvin.hotel.modules.sys.mapper.DictMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.sys.entity.Dict">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.sys.entity.Dict">
         <id column="id" property="id" />
         <result column="parent_id" property="parentId" />
         <result column="name" property="name" />
@@ -20,7 +20,7 @@
        id, parent_id, name, type, code, value, status, sort, remark
     </sql>
 
-    <select id="selectDictList" resultType="com.kalvin.kvf.modules.sys.entity.Dict">
+    <select id="selectDictList" resultType="com.kalvin.hotel.modules.sys.entity.Dict">
         select <include refid="Base_Column_List" /> from sys_dict
         <trim prefix="where" prefixOverrides="and">
             <if test="dict.parentId != null">
@@ -50,7 +50,7 @@
         </trim>
     </select>
 
-    <select id="selectAllDictItemByCode" resultType="com.kalvin.kvf.modules.sys.entity.Dict">
+    <select id="selectAllDictItemByCode" resultType="com.kalvin.hotel.modules.sys.entity.Dict">
         SELECT
             <include refid="Base_Column_List"></include>
         FROM

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.hotels.mapper.HotelsMapper">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.HotelsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.hotels.entity.Hotels">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Hotels">
         <id column="hotel_id" property="hotelId" />
         <result column="hotel_name" property="hotelName" />
         <result column="cover" property="cover"/>
@@ -17,7 +17,7 @@
        hotel_id, hotel_name, location, rating, description,cover
     </sql>
 
-    <select id="selectHotelsList" resultType="com.kalvin.kvf.modules.hotels.entity.Hotels">
+    <select id="selectHotelsList" resultType="com.kalvin.hotel.modules.hotels.entity.Hotels">
         select <include refid="Base_Column_List" /> from hotels
         <trim prefix="where" prefixOverrides="and">
             <if test="hotels.hotelName != null and hotels.hotelName != ''">
@@ -34,7 +34,7 @@
             </if>
         </trim>
     </select>
-    <select id="findAdvantageList" resultType="com.kalvin.kvf.modules.hotels.entity.Hotels">
+    <select id="findAdvantageList" resultType="com.kalvin.hotel.modules.hotels.entity.Hotels">
         select *
         from hotels
         order by  rating desc

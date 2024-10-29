@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.hotels.mapper.OutSettlementsMapper">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.OutSettlementsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.hotels.entity.OutSettlements">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.OutSettlements">
         <id column="settlement_id" property="settlementId" />
         <result column="reservation_id" property="reservationId" />
         <result column="user_id" property="userId" />
@@ -17,7 +17,7 @@
        settlement_id, reservation_id, user_id, total_amount, paid, created_at
     </sql>
 
-    <select id="selectOutSettlementsList" resultType="com.kalvin.kvf.modules.hotels.entity.OutSettlements">
+    <select id="selectOutSettlementsList" resultType="com.kalvin.hotel.modules.hotels.entity.OutSettlements">
         select <include refid="Base_Column_List" /> from check_out_settlements
         <trim prefix="where" prefixOverrides="and">
             <if test="outSettlements.reservationId != null">

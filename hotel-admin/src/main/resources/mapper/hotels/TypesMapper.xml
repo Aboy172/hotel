@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.hotels.mapper.TypesMapper">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.TypesMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.hotels.entity.Types">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Types">
         <id column="room_type_id" property="roomTypeId" />
         <result column="hotel_id" property="hotelId" />
         <result column="type_name" property="typeName" />
@@ -17,7 +17,7 @@
        room_type_id, hotel_id, type_name, description, price, capacity
     </sql>
 
-    <select id="selectTypesList" resultType="com.kalvin.kvf.modules.hotels.entity.Types">
+    <select id="selectTypesList" resultType="com.kalvin.hotel.modules.hotels.entity.Types">
         select <include refid="Base_Column_List" /> from room_types
         <trim prefix="where" prefixOverrides="and">
             <if test="types.hotelId != null">

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.hotels.mapper.ReviewsMapper">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.ReviewsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.hotels.entity.Reviews">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Reviews">
         <id column="review_id" property="reviewId" />
         <result column="user_id" property="userId" />
         <result column="hotel_id" property="hotelId" />
@@ -17,7 +17,7 @@
        review_id, user_id, hotel_id, rating, comment, created_at
     </sql>
 
-    <select id="selectReviewsList" resultType="com.kalvin.kvf.modules.hotels.entity.Reviews">
+    <select id="selectReviewsList" resultType="com.kalvin.hotel.modules.hotels.entity.Reviews">
         select <include refid="Base_Column_List" /> from reviews
         <trim prefix="where" prefixOverrides="and">
             <if test="reviews.userId != null">

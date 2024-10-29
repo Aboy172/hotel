@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kalvin.kvf.modules.schedule.mapper.JobMapper">
+<mapper namespace="com.kalvin.hotel.modules.schedule.mapper.JobMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.kalvin.kvf.modules.schedule.entity.Job">
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.schedule.entity.Job">
         <id column="id" property="id" />
         <result column="bean" property="bean" />
         <result column="method" property="method" />
@@ -19,7 +19,7 @@
        id, bean, method, params, cron, status, remark, create_time
     </sql>
 
-    <select id="selectJobList" resultType="com.kalvin.kvf.modules.schedule.entity.Job">
+    <select id="selectJobList" resultType="com.kalvin.hotel.modules.schedule.entity.Job">
         select <include refid="Base_Column_List" /> from schedule_job
         <trim prefix="where" prefixOverrides="and">
             <if test="job.bean != null and job.bean != ''">

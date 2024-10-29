@@ -91,7 +91,7 @@ mybatis-plus:
 kvf:
   login:
     authcode:
-      enable: false
+      enable: true
       dynamic: true
   quartz:
     enable: false
