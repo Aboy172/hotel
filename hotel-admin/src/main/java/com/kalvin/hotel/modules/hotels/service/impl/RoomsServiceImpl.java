@@ -1,9 +1,10 @@
-package com.kalvin.hotel.modules.hotels.service;
+package com.kalvin.hotel.modules.hotels.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kalvin.hotel.modules.hotels.entity.Rooms;
 import com.kalvin.hotel.modules.hotels.mapper.RoomsMapper;
+import com.kalvin.hotel.modules.hotels.service.RoomsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

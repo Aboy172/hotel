@@ -1,10 +1,11 @@
-package com.kalvin.hotel.modules.hotels.service;
+package com.kalvin.hotel.modules.hotels.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kalvin.hotel.common.utils.ShiroKit;
 import com.kalvin.hotel.modules.hotels.entity.Reservations;
 import com.kalvin.hotel.modules.hotels.mapper.ReservationsMapper;
+import com.kalvin.hotel.modules.hotels.service.ReservationsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

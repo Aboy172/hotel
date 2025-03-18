@@ -20,6 +20,20 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for check_ins
 -- ----------------------------
+DROP TABLE IF EXISTS `carousel`;
+CREATE TABLE `carousel`  (
+                             `id` bigint NOT NULL AUTO_INCREMENT,
+                             `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_as_ci NULL DEFAULT NULL COMMENT '轮播图名称',
+                             `url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_as_ci NULL COMMENT '轮播图路径',
+                             `sort` tinyint NULL DEFAULT NULL COMMENT '排序',
+                             `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
+                             PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of carousel
+-- ----------------------------
+
 DROP TABLE IF EXISTS `check_ins`;
 CREATE TABLE `check_ins`  (
   `check_in_id` bigint NOT NULL AUTO_INCREMENT COMMENT '入住ID',

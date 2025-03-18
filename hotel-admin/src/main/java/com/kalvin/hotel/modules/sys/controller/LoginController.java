@@ -3,7 +3,6 @@ package com.kalvin.hotel.modules.sys.controller;
 import com.kalvin.hotel.common.annotation.Log;
 import com.kalvin.hotel.common.controller.BaseController;
 import com.kalvin.hotel.common.dto.R;
-import com.kalvin.hotel.common.utils.HttpServletContextKit;
 import com.kalvin.hotel.common.utils.ShiroKit;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.utils.CaptchaUtil;
@@ -50,16 +49,16 @@ public class LoginController extends BaseController {
     public R login(@RequestParam("username") String username, @RequestParam("password") String password, boolean rememberMe, String vercode) {
 
         // 只有开启了验证码功能才需要验证。可在yml配置kvf.login.authcode.enable来开启或关闭
-        if (needAuthCode) {
-            // 验证码校验
-            HttpServletRequest request = HttpServletContextKit.getHttpServletRequest();
-            if (!CaptchaUtil.ver(vercode, request)) {
-                CaptchaUtil.clear(request);  // 清除session中的验证码
-                //return R.ok();
-
-                return R.fail("验证码不正确");
-            }
-        }
+        //if (needAuthCode) {
+        //    // 验证码校验
+        //    HttpServletRequest request = HttpServletContextKit.getHttpServletRequest();
+        //    if (!CaptchaUtil.ver(vercode, request)) {
+        //        CaptchaUtil.clear(request);  // 清除session中的验证码
+        //        //return R.ok();
+        //
+        //        return R.fail("验证码不正确");
+        //    }
+        //}
 
         try {
             Subject subject = ShiroKit.getSubject();

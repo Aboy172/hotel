@@ -1,10 +1,11 @@
-package com.kalvin.hotel.modules.hotels.service;
+package com.kalvin.hotel.modules.hotels.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kalvin.hotel.modules.hotels.entity.Notifications;
 import com.kalvin.hotel.modules.hotels.mapper.HotelsMapper;
 import com.kalvin.hotel.modules.hotels.mapper.NotificationsMapper;
+import com.kalvin.hotel.modules.hotels.service.NotificationsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

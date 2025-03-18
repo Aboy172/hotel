@@ -86,7 +86,13 @@ mybatis-plus:
     db-config:
       id-type: auto
       table-underline: true
-
+#自行配置阿里云oss
+aliyun:
+  oss:
+    end-point: xxxxx
+    access-key-id: xxxxx
+    access-key-secret: xxxxx
+    bucket-name: xxxxx
 
 kvf:
   login:
