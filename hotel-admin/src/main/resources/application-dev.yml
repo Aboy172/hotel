@@ -73,7 +73,7 @@ spring:
         min-idle: 0
     timeout: 10000
 
-
+#MybatisPlus设置
 mybatis-plus:
   check-config-location: false
   mapper-locations: classpath:mapper/**/*.xml
