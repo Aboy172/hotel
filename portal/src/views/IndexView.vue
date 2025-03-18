@@ -1,50 +1,19 @@
 <template>
 	<Layout>
-		<div style="width: 100%">
-			<div class="index-page">
-				<div class="banner-section">
-					<el-carousel height="100vh" :interval="5000" arrow="always">
-						<el-carousel-item v-for="item in sortedSlideshow" :key="item.id">
-							<div class="banner-slide">
-								<img :src="item.imageUrl" :alt="item.title" class="banner-image" @error="handleImageError" @load="handleImageLoad"/>
-								<div class="banner-content">
-									<h1>{{item.title}}</h1>
-									<p>{{item.description}}</p>
-									<el-button type="primary" size="large">立即预订</el-button>
-								</div>
-							</div>
-						</el-carousel-item>
-					</el-carousel>
-				</div>
-			</div>
-		</div>
-
-		<div class="section">
-			<div class="container">
-				<div class="section--header">
-					<h2 class="section--title">酒店推荐</h2>
-				</div>
-
-				<div class="hotel-grid">
-					<div class="hotel-card" v-for="(advantage,index) in advantageList" :key="index">
-						<div class="hotel-image">
-							<img :src="advantage.cover" alt="" class="rounded-image">
+		<div class="carousel-container">
+			<el-carousel :height="carouselHeight" :interval="5000" arrow="always">
+				<el-carousel-item v-for="item in slideshow" :key="item.id">
+					<!-- <div class="carousel-item"> -->
+						<img :src="item.url" :alt="item.name" class="carousel-image"/>
+						<div class="carousel-overlay"></div>
+						<div class="carousel-content">
+							<h2>{{item.name}}</h2>
+							<p>尊享奢华住宿体验，给您家一般的温暖</p>
+							<el-button type="primary" class="book-btn">立即预订</el-button>
 						</div>
-						<div class="hotel-info">
-							<h3 class="hotel-name">{{advantage.hotelName}}</h3>
-							<div class="hotel-location">
-								<i class="am-icon-map-marker"></i>
-								<span>{{advantage.location}}</span>
-							</div>
-							<p class="hotel-desc">{{advantage.description}}</p>
-							<div class="hotel-rating">
-								<i class="am-icon-star"></i>
-								<span>平均评分：{{advantage.rating}}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+					<!-- </div> -->
+				</el-carousel-item>
+			</el-carousel>
 		</div>
 
 		<div class="section">
@@ -53,35 +22,15 @@
 					<h2 class="section--title">热门房型</h2>
 				</div>
 				<div class="room-grid">
-					<div class="room-card" v-for="(room, index) in hotRooms" :key="index">
-						<div class="room-image">
-							<img :src="room.image" :alt="room.name">
-						</div>
+					<div class="room-item" v-for="(room, index) in hotRooms" :key="index">
+						<img :src="room.image" :alt="room.name" class="room-image">
 						<div class="room-info">
-							<h3 class="room-title">{{room.name}}</h3>
-							<p class="room-desc">{{room.description}}</p>
+							<h3>{{room.name}}</h3>
+							<p>{{room.description}}</p>
 							<div class="room-price">
-								<span class="price">¥{{room.price}}</span>
-								<span class="per-night">/晚</span>
+								<span class="price">¥{{room.price}}/晚</span>
 								<el-button type="primary" size="small">立即预订</el-button>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="service-section">
-			<div class="container">
-				<h2 class="section-title">酒店服务</h2>
-				<div class="service-grid">
-					<div class="service-item" v-for="(service, index) in services" :key="index">
-						<div class="service-icon">
-							<i :class="service.icon"></i>
-						</div>
-						<div class="service-content">
-							<h3>{{service.title}}</h3>
-							<p>{{service.description}}</p>
 						</div>
 					</div>
 				</div>
@@ -125,9 +74,9 @@ export default {
 	name: "IndexView",
 	components: {Layout},
 	computed: {
-		sortedSlideshow() {
-			return this.slideshow.sort((a, b) => a.sort - b.sort);
-		}
+		// sortedSlideshow() {
+		// 	return this.slideshow.sort((a, b) => a.sort - b.sort);
+		// }
 	},
 	data(){
 		return{
@@ -181,6 +130,9 @@ export default {
 		}
 	},
 	mounted() {
+		this.updateCarouselHeight();
+		window.addEventListener('resize', this.updateCarouselHeight);
+		
 		Promise.all([
 			this.getCarouselList(),
 			this.getAdvantageList()
@@ -188,7 +140,13 @@ export default {
 			console.error('数据加载失败:', error);
 		});
 	},
+	beforeDestroy() {
+		window.removeEventListener('resize', this.updateCarouselHeight);
+	},
 	methods:{
+		updateCarouselHeight() {
+			this.carouselHeight = window.innerHeight + 'px';
+		},
 		getAdvantageList(){
 			this.getRequest("/user/hotels/findAdvantageList").then(resp=>{
 				if (resp){
@@ -198,18 +156,15 @@ export default {
 			})
 		},
 		getCarouselList(){
-			return this.getRequest("/carousel/list").then(resp => {
-				if (resp && resp.code === 0) {
-					console.log('轮播图数据:', resp.data);
-					this.slideshow = resp.data.map(item => ({
-						id: item.id,
-						imageUrl: item.url,
-						title: item.name,
-						description: '尽享奢华体验，给您家一般的温暖',
-						sort: item.sort
-					}));
-					console.log('处理后的数据:', this.slideshow);
+			this.getRequest("/carousel/list").then(resp => {
+				if (resp && resp.data.code === 0) {
+					this.slideshow = resp.data.data;
+					console.log('轮播图数据:', this.slideshow);
+				} else {
+					console.error('轮播图数据加载失败:', resp);
 				}
+			}).catch(error => {
+				console.error('请求失败:', error);
 			});
 		},
 		handleImageError(e) {
@@ -417,47 +372,149 @@ export default {
 	margin-top: -60px;
 }
 
-.banner-slide {
+.carousel-container {
 	position: relative;
-	height: 100vh;
 	width: 100%;
+	height: 100vh;
 	overflow: hidden;
 }
 
-.banner-image {
-	position: absolute;
-	top: 0;
-	left: 0;
+.carousel-item {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.carousel-image {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: center;
 }
 
-.banner-content {
+.carousel-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0.2),
+		rgba(0, 0, 0, 0.5)
+	);
+}
+
+.carousel-content {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	text-align: center;
 	color: white;
-	z-index: 2;
 	width: 80%;
 	max-width: 800px;
+	z-index: 2;
 }
 
-.banner-content h1 {
+.carousel-content h2 {
 	font-size: 3.5em;
+	font-weight: 600;
 	margin-bottom: 20px;
-	text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 	animation: fadeInDown 1s ease-out;
 }
 
-.banner-content p {
-	font-size: 1.5em;
+.carousel-content p {
+	font-size: 1.8em;
 	margin-bottom: 30px;
-	text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 	animation: fadeInUp 1s ease-out 0.3s;
+}
+
+.book-btn {
+	padding: 15px 40px;
+	font-size: 1.2em;
+	border-radius: 30px;
+	background: #7c6aa6;
+	border: none;
+	transition: all 0.3s ease;
+	animation: fadeIn 1s ease-out 0.6s;
+}
+
+.book-btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	background: #9b89c9;
+}
+
+.el-carousel__arrow {
+	width: 50px;
+	height: 50px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 50%;
+	transition: all 0.3s ease;
+}
+
+.el-carousel__arrow:hover {
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.el-carousel__indicators {
+	z-index: 10;
+}
+
+.el-carousel__button {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.7);
+	transition: all 0.3s ease;
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@media (max-width: 768px) {
+	.carousel-content h2 {
+		font-size: 2.5em;
+	}
+	
+	.carousel-content p {
+		font-size: 1.2em;
+	}
+	
+	.book-btn {
+		padding: 12px 30px;
+		font-size: 1em;
+	}
 }
 
 .container {
@@ -485,45 +542,23 @@ export default {
 	gap: 40px;
 }
 
-@keyframes fadeInDown {
-	from {
-		opacity: 0;
-		transform: translateY(-30px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(30px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
 @media (max-width: 1200px) {
 	.container {
 		max-width: 100%;
 		padding: 0 30px;
 	}
 	
-	.banner-content h1 {
+	.carousel-content h1 {
 		font-size: 3em;
 	}
 	
-	.banner-content p {
+	.carousel-content p {
 		font-size: 1.2em;
 	}
 }
 
 @media (max-width: 768px) {
-	.banner-content h1 {
+	.carousel-content h1 {
 		font-size: 2.5em;
 	}
 	
@@ -709,4 +744,145 @@ export default {
 .el-carousel, .el-carousel__container {
 	height: 100vh !important;
 }
+
+.features_item {
+	border-radius: 15px;
+	overflow: hidden;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+	transition: all 0.3s;
+	text-align: center;
+	padding: 30px 20px;
+	background: #fff;
+}
+
+.features_item:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.features_item i {
+	font-size: 40px;
+	color: #7c6aa6;
+	margin-bottom: 20px;
+}
+
+.features_item--title {
+	font-size: 1.2em;
+	color: #2c3e50;
+	margin-bottom: 15px;
+}
+
+.features_item--text {
+	color: #666;
+	line-height: 1.6;
+}
+
+.banner-section {
+	margin-top: -60px;
+}
+
+.carousel-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.section {
+	padding: 40px 0;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.section-title {
+	text-align: center;
+	font-size: 28px;
+	margin-bottom: 30px;
+	color: #333;
+}
+
+/* 酒店列表样式 */
+.hotel-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.hotel-item {
+	flex: 1;
+	min-width: 300px;
+	max-width: calc(33.333% - 14px);
+	background: #fff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hotel-image {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+}
+
+.hotel-content {
+	padding: 15px;
+}
+
+/* 房型列表样式 */
+.room-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 30px;
+	padding: 20px;
+}
+
+.room-item {
+	background: white;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.room-image {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+}
+
+.room-info {
+	padding: 20px;
+}
+
+.room-price {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 15px;
+}
+
+.price {
+	color: #f56c6c;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+	.hotel-item {
+		max-width: 100%;
+	}
+	
+	.room-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	.room-item {
+		flex: 0 0 100%;
+	}
+}
 </style>
+
