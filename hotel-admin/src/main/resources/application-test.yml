@@ -19,10 +19,7 @@ spring:
           username: ${MYSQL_USERNAME:root}
           password: ${MYSQL_PASSWORD:123456}
           driver-class-name: com.mysql.cj.jdbc.Driver # 3.2.0开始支持SPI可省略此配置
-    #        slave_1:  # TODO: 其它数据源，若需要使用多数据源，放开注释，修改配置即可。
-    #          url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/kvf_admin?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
-    #          username: ${MYSQL_USERNAME:root}
-    #          password: ${MYSQL_PASSWORD:root}
+
 
     # druid数据源配置
     name: druidDataSource
