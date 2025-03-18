@@ -3,4 +3,5 @@ spring:
     active: '@activeProfile@'
 
 
-
+server:
+  port: 80
