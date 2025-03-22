@@ -3,6 +3,7 @@ package com.kalvin.hotel.modules.hotels.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.kalvin.hotel.modules.hotels.entity.Rooms;
+import com.kalvin.hotel.modules.hotels.vo.RoomsVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -23,5 +24,5 @@ public interface RoomsMapper extends BaseMapper<Rooms> {
      */
     List<Rooms> selectRoomsList(@Param("rooms") Rooms rooms, IPage page);
 
-    Rooms getRoomDetails(@Param("roomId") Integer roomId);
+    RoomsVo getRoomDetails(@Param("roomId") Integer roomId);
 }

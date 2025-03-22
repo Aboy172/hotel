@@ -5,7 +5,7 @@ import com.kalvin.hotel.common.dto.R;
 import com.kalvin.hotel.common.utils.ShiroKit;
 import com.kalvin.hotel.modules.sys.entity.User;
 import com.kalvin.hotel.modules.sys.service.IMenuService;
-import com.kalvin.hotel.modules.sys.service.IUserService;
+import com.kalvin.hotel.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ public class IndexController extends BaseController {
     private IMenuService menuService;
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @GetMapping(value = "/")
     public ModelAndView index() {

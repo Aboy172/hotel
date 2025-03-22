@@ -12,8 +12,6 @@ import com.kalvin.hotel.modules.sys.service.ILogService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -54,19 +52,19 @@ public class ActionAspect {
 		}
 	}
 
-	@Around("logPointCut()")
-	public Object around(ProceedingJoinPoint point) throws Throwable {
-		long beginTime = System.currentTimeMillis();
-		//执行方法
-		Object result = point.proceed();
-		//执行时长(毫秒)
-		long time = System.currentTimeMillis() - beginTime;
-
-		//保存日志
-		saveActionLog(point, time, true);
-
-		return result;
-	}
+	//@Around("logPointCut()")
+	//public Object around(ProceedingJoinPoint point) throws Throwable {
+	//	long beginTime = System.currentTimeMillis();
+	//	//执行方法
+	//	Object result = point.proceed();
+	//	//执行时长(毫秒)
+	//	long time = System.currentTimeMillis() - beginTime;
+	//
+	//	//保存日志
+	//	saveActionLog(point, time, true);
+	//
+	//	return result;
+	//}
 
 	private void saveActionLog(JoinPoint joinPoint, long time, boolean isAround) {
 		User user = (User) SecurityUtils.getSubject().getPrincipal();

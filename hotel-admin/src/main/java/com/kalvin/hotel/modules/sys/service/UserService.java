@@ -15,7 +15,7 @@ import java.util.List;
  * @author Kalvin
  * @since 2019-04-29
  */
-public interface IUserService extends IService<User> {
+public interface UserService extends IService<User> {
 
     /**
      * 获取用户列表。分页

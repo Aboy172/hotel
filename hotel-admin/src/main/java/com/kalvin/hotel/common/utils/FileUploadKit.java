@@ -5,7 +5,7 @@ import cn.hutool.core.util.RandomUtil;
 import com.kalvin.hotel.common.constant.Constants;
 import com.kalvin.hotel.common.constant.UploadPathEnum;
 import com.kalvin.hotel.common.dto.UploadFileInfo;
-import com.kalvin.hotel.common.exception.KvfException;
+import com.kalvin.hotel.common.exception.HotelException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,10 +45,10 @@ public class FileUploadKit {
             if (file.createNewFile()) {
                 multipartFile.transferTo(file);
             } else {
-                throw new KvfException("文件上传失败");
+                throw new HotelException("文件上传失败");
             }
         } catch (IOException e) {
-            throw new KvfException("文件上传失败：" + e.getMessage() + filePath);
+            throw new HotelException("文件上传失败：" + e.getMessage() + filePath);
         }
 
         return new UploadFileInfo(filename, path + "/" + filename, filePath.replaceAll("\\\\", "\\/"));

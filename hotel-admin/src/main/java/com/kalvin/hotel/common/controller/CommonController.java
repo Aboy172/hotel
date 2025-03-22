@@ -4,10 +4,10 @@ import cn.hutool.extra.servlet.ServletUtil;
 import com.kalvin.hotel.common.constant.Constants;
 import com.kalvin.hotel.common.constant.UploadPathEnum;
 import com.kalvin.hotel.common.dto.R;
-import com.kalvin.hotel.common.exception.KvfException;
+import com.kalvin.hotel.common.exception.HotelException;
 import com.kalvin.hotel.common.utils.FileUploadKit;
 import com.kalvin.hotel.common.utils.HttpServletContextKit;
-import com.kalvin.hotel.modules.sys.service.IUserService;
+import com.kalvin.hotel.modules.sys.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,8 @@ import java.io.IOException;
 public class CommonController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
+
 
     @GetMapping(value = "select/user")
     public ModelAndView selectUser() {
@@ -53,7 +54,7 @@ public class CommonController {
     /*@GetMapping(value = "download")
     public void download(String filePath) {
         if (StrUtil.isBlank(filePath)) {
-            throw new KvfException("不存在的文件：" + filePath);
+            throw new HotelException("不存在的文件：" + filePath);
         }
         HttpServletResponse response = HttpServletContextKit.getHttpServletResponse();
         ServletUtil.write(response, new File(filePath));
@@ -72,7 +73,7 @@ public class CommonController {
             ServletUtil.write(response, new FileInputStream(new File(fileUrl)), "image/" + suffix);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-            throw new KvfException("访问静态图片【" + fileUrl + "】出错：" + e.getMessage());
+            throw new HotelException("访问静态图片【" + fileUrl + "】出错：" + e.getMessage());
         }
     }
 
@@ -91,5 +92,10 @@ public class CommonController {
     public R searchUsers(String keyword) {
         return R.ok(userService.search(keyword));
     }
+
+
+
+
+
 
 }

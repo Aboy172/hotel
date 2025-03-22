@@ -55,7 +55,7 @@
             </if>
         </trim>
     </select>
-    <select id="getRoomDetails" resultType="com.kalvin.hotel.modules.hotels.entity.Rooms" resultMap="ExtendedResultMap">
+    <select id="getRoomDetails" resultType="com.kalvin.hotel.modules.hotels.vo.RoomsVo">
         SELECT r.room_id,r.room_number,r.hotel_id,r.cover,rt.type_name,rt.price,rt.description,h.hotel_name,h.rating,h.location,r.status
         from rooms  r left join room_types  rt
                                 on r.room_type_id = rt.room_type_id

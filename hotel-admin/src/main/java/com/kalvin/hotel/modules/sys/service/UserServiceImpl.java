@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.kalvin.hotel.common.constant.SysConstant;
-import com.kalvin.hotel.common.exception.KvfException;
+import com.kalvin.hotel.common.exception.HotelException;
 import com.kalvin.hotel.common.utils.CryptionKit;
 import com.kalvin.hotel.modules.sys.entity.User;
 import com.kalvin.hotel.modules.sys.mapper.UserMapper;
@@ -27,7 +27,7 @@ import java.util.List;
  * @since 2019-04-29
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Autowired
     private IUserRoleService userRoleService;
@@ -66,7 +66,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public void addUser(User user, List<Long> roleIds) {
         if (this.checkUsernameRepeat(user.getUsername())) {
-            throw new KvfException("用户名【" + user.getUsername() + "】已被使用！");
+            throw new HotelException("用户名【" + user.getUsername() + "】已被使用！");
         }
         user.setDeptId(user.getDeptId() == null ? 0 : user.getDeptId());
         // 生成用户初始密码并加密
@@ -81,7 +81,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User oldUser = super.getById(user.getId());
         if (!oldUser.getUsername().equals(user.getUsername())) {
             if (this.checkUsernameRepeat(user.getUsername())) {
-                throw new KvfException("用户名【" + user.getUsername() + "】已被使用！");
+                throw new HotelException("用户名【" + user.getUsername() + "】已被使用！");
             }
         }
         user.setDeptId(user.getDeptId() == null ? 0 : user.getDeptId());
@@ -93,7 +93,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public void deleteByIds(List<Long> ids) {
         User adminUser = super.getOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, SysConstant.ADMIN));
         if (ids.contains(adminUser.getId())) {
-            throw new KvfException("不允许删除超级管理员【" + SysConstant.ADMIN + "】用户");
+            throw new HotelException("不允许删除超级管理员【" + SysConstant.ADMIN + "】用户");
         }
         super.removeByIds(ids);
     }

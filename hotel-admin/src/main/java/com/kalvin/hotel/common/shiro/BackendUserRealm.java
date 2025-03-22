@@ -6,7 +6,7 @@ import com.kalvin.hotel.common.utils.CryptionKit;
 import com.kalvin.hotel.common.utils.ShiroKit;
 import com.kalvin.hotel.modules.sys.entity.User;
 import com.kalvin.hotel.modules.sys.service.IMenuService;
-import com.kalvin.hotel.modules.sys.service.IUserService;
+import com.kalvin.hotel.modules.sys.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -19,7 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 作用：认证授权<br>
@@ -29,7 +32,7 @@ import java.util.*;
  * @Date 2019年05月05日 13:30
  */
 @Component
-public class UserRealm extends AuthorizingRealm {
+public class BackendUserRealm  extends AuthorizingRealm {
 
     // 在shiro框架中(UserRealm)使用过@Autowire注入的类，缓存注解和事务注解都失效。
     // 解决方法：
@@ -38,7 +41,7 @@ public class UserRealm extends AuthorizingRealm {
     // 原文链接：https://blog.csdn.net/elonpage/article/details/78965176
     @Lazy
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Lazy
     @Autowired

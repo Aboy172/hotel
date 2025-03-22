@@ -3,18 +3,18 @@ package com.kalvin.hotel.common.exception;
 /**
  * 自定义异常类
  */
-public class KvfException extends RuntimeException {
+public class HotelException extends RuntimeException {
 
     private static final long serialVersionUID = 3844100562400725986L;
     private Integer errorCode;
     private String msg;
 
-    public KvfException(String msg) {
+    public HotelException (String msg) {
         super(msg);
         this.msg = msg;
     }
 
-    public KvfException(int errorCode, String msg) {
+    public HotelException (int errorCode,String msg) {
         super(msg);
         this.errorCode = errorCode;
         this.msg = msg;

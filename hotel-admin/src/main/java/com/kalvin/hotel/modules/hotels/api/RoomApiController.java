@@ -5,6 +5,7 @@ import com.kalvin.hotel.common.controller.BaseController;
 import com.kalvin.hotel.common.dto.R;
 import com.kalvin.hotel.modules.hotels.entity.Rooms;
 import com.kalvin.hotel.modules.hotels.service.RoomsService;
+import com.kalvin.hotel.modules.hotels.vo.RoomsVo;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,7 +26,7 @@ public class RoomApiController extends BaseController {
 
     @GetMapping("/getRoomDetails/{roomId}")
     public R getRoomDetails(@PathVariable("roomId") Integer roomId) {
-        Rooms rooms = roomsService.getRoomDetails(roomId);
+        RoomsVo rooms = roomsService.getRoomDetails(roomId);
         return R.ok(rooms);
     }
 

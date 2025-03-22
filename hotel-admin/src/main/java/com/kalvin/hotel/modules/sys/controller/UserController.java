@@ -15,7 +15,7 @@ import com.kalvin.hotel.modules.sys.entity.Dept;
 import com.kalvin.hotel.modules.sys.entity.User;
 import com.kalvin.hotel.modules.sys.service.IDeptService;
 import com.kalvin.hotel.modules.sys.service.IUserRoleService;
-import com.kalvin.hotel.modules.sys.service.IUserService;
+import com.kalvin.hotel.modules.sys.service.UserService;
 import com.kalvin.hotel.modules.sys.vo.UserQueryVO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ import java.util.List;
 public class UserController extends BaseController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @Autowired
     private IDeptService deptService;

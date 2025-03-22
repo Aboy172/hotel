@@ -1,6 +1,6 @@
 package com.kalvin.hotel.modules.schedule.utils;
 
-import com.kalvin.hotel.common.exception.KvfException;
+import com.kalvin.hotel.common.exception.HotelException;
 import com.kalvin.hotel.common.utils.SpringContextKit;
 import com.kalvin.hotel.modules.schedule.constant.JobConstant;
 import com.kalvin.hotel.modules.schedule.entity.Job;
@@ -35,7 +35,7 @@ public class ScheduleKit {
             // 默认创建时任务设置为暂停
             ScheduleKit.pause(jobId);
         } catch (SchedulerException e) {
-            throw new KvfException("创建定时任务失败");
+            throw new HotelException("创建定时任务失败");
         }
     }
 
@@ -43,7 +43,7 @@ public class ScheduleKit {
         try {
             scheduler.pauseJob(getJobKey(jobId));
         } catch (SchedulerException e) {
-            throw new KvfException("暂停定时任务失败");
+            throw new HotelException("暂停定时任务失败");
         }
     }
 
@@ -51,7 +51,7 @@ public class ScheduleKit {
         try {
             scheduler.resumeJob(getJobKey(jobId));
         } catch (SchedulerException e) {
-            throw new KvfException("恢复启动定时任务失败");
+            throw new HotelException("恢复启动定时任务失败");
         }
     }
 
@@ -68,7 +68,7 @@ public class ScheduleKit {
             // 按新的trigger重新设置job执行
             scheduler.rescheduleJob(triggerKey, trigger);
         } catch (SchedulerException e) {
-            throw new KvfException("更新定时任务失败");
+            throw new HotelException("更新定时任务失败");
         }
     }
 
@@ -78,7 +78,7 @@ public class ScheduleKit {
             scheduler.unscheduleJob(getTriggerKey(jobId));
             scheduler.deleteJob(getJobKey(jobId));
         } catch (SchedulerException e) {
-            throw new KvfException("删除定时任务失败");
+            throw new HotelException("删除定时任务失败");
         }
     }
 

@@ -1,7 +1,7 @@
 package com.kalvin.hotel.common.utils;
 
-import com.kalvin.hotel.common.exception.KvfException;
-import com.kalvin.hotel.common.shiro.UserRealm;
+import com.kalvin.hotel.common.exception.HotelException;
+import com.kalvin.hotel.common.shiro.BackendUserRealm;
 import com.kalvin.hotel.modules.sys.entity.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -68,7 +68,7 @@ public class ShiroKit {
     public static String getKaptcha(String key) {
         Object kaptcha = getSessionAttribute(key);
         if(kaptcha == null){
-            throw new KvfException("验证码已失效");
+            throw new HotelException("验证码已失效");
         }
         getSession().removeAttribute(key);
         return kaptcha.toString();
@@ -79,7 +79,7 @@ public class ShiroKit {
      */
     public static void flushPrivileges() {
         RealmSecurityManager rsm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
-        UserRealm realm = (UserRealm) rsm.getRealms().iterator().next();
+        BackendUserRealm realm = (BackendUserRealm) rsm.getRealms().iterator().next();
         // 只刷新当前用户权限
 //        realm.clearCachedAuthorization();
         // 刷新所有在线用户权限

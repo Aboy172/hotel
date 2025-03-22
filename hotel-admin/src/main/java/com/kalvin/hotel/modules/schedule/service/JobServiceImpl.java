@@ -2,7 +2,7 @@ package com.kalvin.hotel.modules.schedule.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.kalvin.hotel.common.exception.KvfException;
+import com.kalvin.hotel.common.exception.HotelException;
 import com.kalvin.hotel.modules.schedule.constant.JobConstant;
 import com.kalvin.hotel.modules.schedule.utils.ScheduleKit;
 import org.springframework.stereotype.Service;
@@ -73,7 +73,7 @@ public class JobServiceImpl extends ServiceImpl<JobMapper, Job> implements JobSe
     public Job checkJobExist(Long id) {
         Job job = super.getById(id);
         if (job == null) {
-            throw new KvfException("不存在的任务ID");
+            throw new HotelException("不存在的任务ID");
         }
         return job;
     }

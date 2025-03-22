@@ -12,3 +12,4 @@
 !/src/main/resources/application-test.yml
 
 !/logs/
+!/src/main/resources/rebel.xml

@@ -6,6 +6,7 @@ import com.kalvin.hotel.common.dto.R;
 import com.kalvin.hotel.common.utils.ShiroKit;
 import com.wf.captcha.GifCaptcha;
 import com.wf.captcha.utils.CaptchaUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,7 @@ import java.io.IOException;
  * @Date 2019年05月05日 15:14
  */
 @RestController
+@Slf4j
 public class LoginController extends BaseController {
 
     @Value(value = "${kvf.login.authcode.enable}")

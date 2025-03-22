@@ -7,7 +7,6 @@ import com.kalvin.hotel.common.controller.BaseController;
 import com.kalvin.hotel.common.dto.R;
 import com.kalvin.hotel.common.utils.ShiroKit;
 import com.kalvin.hotel.modules.hotels.entity.*;
-import com.kalvin.hotel.modules.hotels.enums.SettlementEnum;
 import com.kalvin.hotel.modules.hotels.service.*;
 import com.kalvin.hotel.modules.hotels.vo.CheckOutVo;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,29 +59,11 @@ public class OrderApiController extends BaseController {
     }
 
     @PostMapping("/reservation")
-    public R reservation(Reservations reservations) {
-        Long userId = ShiroKit.getUserId();
-        reservations.setUserId(userId);
-        reservations.setStatus(SettlementEnum.ADD);
-        Integer days = reservations.getDays();
-        BigDecimal totalPrice = reservations.getTotalPrice();
-        BigDecimal daysBigDecimal = BigDecimal.valueOf(days);
-        BigDecimal resultPrice = daysBigDecimal.multiply(totalPrice);
-        reservations.setTotalPrice(resultPrice);
-        reservationsService.save(reservations);
-        Ins ins = new Ins();
-        ins.setReservationId(reservations.getReservationId());
-        ins.setUserId(userId);
-        ins.setRoomId(reservations.getRoomId());
-        ins.setCheckInDate(reservations.getCheckInDate().atStartOfDay());
-        ins.setCheckOutDate(reservations.getCheckOutDate().atStartOfDay());
-        ins.setTotalCost(reservations.getTotalPrice());
-        ins.setStatus(1);
-        insService.save(ins);
-        LambdaUpdateWrapper<Rooms> wrapper = new LambdaUpdateWrapper<>();
-        wrapper.eq(Rooms::getRoomId, reservations.getRoomId());
-        wrapper.set(Rooms::getStatus, 0);
-        roomsService.update(wrapper);
+    public R reservation(@RequestBody  Reservations reservations) {
+
+        roomsService.reservation(reservations);
+
+
         return R.ok();
     }
 

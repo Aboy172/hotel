@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 import com.kalvin.hotel.common.entity.BaseEntity;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -17,10 +16,9 @@ import com.kalvin.hotel.common.entity.BaseEntity;
  * @since 2024-10-21 22:11:26
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @TableName("rooms")
-public class Rooms extends BaseEntity {
+public class Rooms  extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

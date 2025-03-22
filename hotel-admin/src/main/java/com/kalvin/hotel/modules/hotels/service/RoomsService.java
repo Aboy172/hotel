@@ -2,7 +2,9 @@ package com.kalvin.hotel.modules.hotels.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.kalvin.hotel.modules.hotels.entity.Reservations;
 import com.kalvin.hotel.modules.hotels.entity.Rooms;
+import com.kalvin.hotel.modules.hotels.vo.RoomsVo;
 
 /**
  * <p>
@@ -20,8 +22,9 @@ public interface RoomsService extends IService<Rooms> {
     Page<Rooms> listRoomsPage(Rooms rooms);
 
 
-    Rooms getRoomDetails(Integer roomId);
+    RoomsVo getRoomDetails(Integer roomId);
 
     Page<Rooms> query(Rooms rooms);
 
+    void reservation (Reservations reservations);
 }
