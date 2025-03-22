@@ -63,7 +63,7 @@
                   <p> 酒店名称：{{ room.hotelId }}</p>
                   <p>客房号：{{ room.roomNumber }}</p>
                   <p>客房类型：{{ room.roomTypeName }}</p>
-                  <p>入住状态：{{ room.status == 1 ? '可入住' : '已被他人入住' }}</p>
+                  <p>入住状态：{{ room.status == 0 ? '可入住' : '已被他人入住' }}</p>
 
 
                 </div>
@@ -99,7 +99,7 @@ export default {
   },
   mounted() {
     this.getRoomTypeList()
-    this.getGoodsList(1)
+    //this.getGoodsList(1)
     this.getAdvantageList();
     this.getRoomList();
   },
@@ -189,14 +189,14 @@ export default {
       console.log(typeId)
       this.getGoodsList(typeId)
     },
-    getGoodsList(typeId) {
-      this.getRequest(`/findTypeDetailsByTypeId/${typeId}`).then(resp => {
-        if (resp) {
-          this.goodsList = resp.data.data
-          //console.log(resp.data.data)
-        }
-      })
-    },
+    //getGoodsList(typeId) {
+    //  this.getRequest(`/findTypeDetailsByTypeId/${typeId}`).then(resp => {
+    //    if (resp) {
+    //      this.goodsList = resp.data.data
+    //      //console.log(resp.data.data)
+    //    }
+    //  })
+    //},
     handleDetails(productId) {
       this.$router.push({path: `/product/productId/${productId}`})
     }

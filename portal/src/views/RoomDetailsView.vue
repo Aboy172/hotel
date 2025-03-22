@@ -23,17 +23,17 @@
           </div>
           <div class="room-info-container">
             <div class="container">
-              <h2 class="room-title">{{ room.types.typeName }}</h2>
-              <p class="room-info">酒店名称: {{ room.hotels.hotelName }}</p>
-              <p class="room-info">位置: {{ room.hotels.location }}</p>
+              <h2 class="room-title">{{ room.typeName }}</h2>
+              <p class="room-info">酒店名称: {{ room.hotelName }}</p>
+              <p class="room-info">位置: {{ room.location }}</p>
               <p class="room-info">房间号: {{ room.roomNumber }}</p>
-              <p class="room-info">价格: ¥{{ room.types.price }}/天</p>
-              <p class="room-info">房间介绍: {{ room.types.description }}</p>
-              <p class="room-status">入住状态: {{ room.status == 1 ? '可入住' : '已被他人入住' }}</p>
+              <p class="room-info">价格: ¥{{ room.price }}/天</p>
+              <p class="room-info">房间介绍: {{ room.description }}</p>
+              <p class="room-status">入住状态: {{ room.status == 0 ? '可入住' : '已被他人入住' }}</p>
               <!--                <b-button size="lg" id="show-btn" class="am-icon-bed" variant="success" @click="openModal">-->
               <!--                  点击入住-->
               <!--                </b-button>-->
-              <am-button @click="showConfirm" class="am-icon-bed" v-if="room.status == 1 ">立即入住</am-button>
+              <am-button @click="showConfirm" class="am-icon-bed" v-if="room.status ==0 ">立即入住</am-button>
 
               <am-confirm :is-show.sync="confirmVisible" title="入住确认" @cancel="cancelHandle"
                           @confirm="confirmHandle">
@@ -90,13 +90,23 @@ export default {
 
     },
     confirmHandle() {
-      const checkInDate = new Date(); // 当前日期作为入住日期
+      // 当前日期作为入住日期
+      const checkInDate = new Date();
       const checkOutDate = new Date(checkInDate);
-      checkOutDate.setDate(checkOutDate.getDate() + 3); // 将退房日期设为入住日期加3天
-      const params = `?roomId=${this.$route.params.roomId}&checkInDate=${
-          checkInDate.toISOString().split('T')[0]}&checkOutDate=${checkOutDate.toISOString().split(
-          'T')[0]}&totalPrice=${this.room.types.price}&days=${this.day}`;
-      this.getRequestPost(`/user/order/reservation${params}`).then(resp => {
+       // 将退房日期设为入住日期加3天
+      checkOutDate.setDate(checkOutDate.getDate() + 3)
+
+      // 创建请求体对象
+      const payload = {
+        roomId: this.$route.params.roomId,
+        checkInDate: checkInDate.toISOString().split('T')[0],
+        checkOutDate: checkOutDate.toISOString().split('T')[0],
+        totalPrice: this.room.price,
+        days: this.day,
+      };
+
+      // 使用请求体发送POST请求
+      this.getRequestPost('/user/order/reservation', payload).then(resp => {
         if (resp) {
           this.$notify({
             message: '入住成功',
@@ -106,7 +116,8 @@ export default {
           this.getRoomDetails();
           this.$router.push({ name: 'room' });
         }
-      })
+      });
+
 
     },
 

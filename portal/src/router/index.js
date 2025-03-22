@@ -27,12 +27,12 @@ const routes = [
     {
         path: '/room',
         name: 'room',
-        component: () => import('../views/ProductView.vue'),
+        component: () => import('../views/Room.vue'),
     },
     {
         path: '/room/roomId/:roomId',
         name: 'productDetails',
-        component: () => import("../views/ProductDetailsView.vue")
+        component: () => import("../views/RoomDetailsView.vue")
     },
     {
         path: '/example',
