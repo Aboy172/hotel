@@ -44,10 +44,11 @@
     <!--子节点<property name="" value=""> ：用来定义变量值，它有两个属性name和value，通过<property>定义的值会被插入到logger上下文中，可以使“${}”来使用变量。-->
     <!--子节点<property resource=""/> ：用来引入外部属性文件，可以使“${}”来使用变量。-->
     <!--<property resource="logback.properties"/>-->
-    <property name="LOG_FILE_NAME" value="kvf-admin"/>
+    <property name="LOG_PATH" value="logs"/>
+    <property name="LOG_FILE_NAME" value="hotel-admin"/>
     <!-- 日志文件目录（按环境分） -->
     <springProfile name="dev">
-        <property name="LOG_PATH" value="D://logs"/>
+        <property name="LOG_PATH" value="logs"/>
     </springProfile>
     <springProfile name="test">
         <property name="LOG_PATH" value="/tmp/logs/kvf-admin"/>
