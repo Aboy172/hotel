@@ -1,0 +1,132 @@
+{
+  "hotels": [
+    { "id": 1, "name": "皇冠假日酒店", "address": "市中心金融区", "rating": 5 },
+    { "id": 2, "name": "希尔顿酒店", "address": "滨江商务区", "rating": 5 },
+    { "id": 3, "name": "香格里拉酒店", "address": "文化艺术区", "rating": 5 },
+    { "id": 4, "name": "万豪酒店", "address": "科技园区", "rating": 5 },
+    { "id": 5, "name": "威斯汀酒店", "address": "湖畔风景区", "rating": 5 },
+    { "id": 6, "name": "丽思卡尔顿", "address": "城市广场", "rating": 5 },
+    { "id": 7, "name": "柏悦酒店", "address": "商业中心", "rating": 5 },
+    { "id": 8, "name": "文华东方", "address": "江滨路", "rating": 5 }
+  ],
+  "roomTypes": [
+    { 
+      "id": 1, 
+      "name": "标准双人房",
+      "basePrice": 399,
+      "size": "30㎡",
+      "bedType": "双床",
+      "maxGuests": 2,
+      "amenities": ["免费WiFi", "空调", "电视", "独立卫浴"]
+    },
+    { 
+      "id": 2, 
+      "name": "豪华大床房",
+      "basePrice": 599,
+      "size": "35㎡",
+      "bedType": "大床",
+      "maxGuests": 2,
+      "amenities": ["免费WiFi", "空调", "电视", "独立卫浴", "迷你吧"]
+    },
+    { 
+      "id": 3, 
+      "name": "商务套房",
+      "basePrice": 899,
+      "size": "45㎡",
+      "bedType": "大床",
+      "maxGuests": 2,
+      "amenities": ["免费WiFi", "空调", "电视", "独立卫浴", "迷你吧", "办公区"]
+    },
+    { 
+      "id": 4, 
+      "name": "豪华套房",
+      "basePrice": 1299,
+      "size": "60㎡",
+      "bedType": "大床",
+      "maxGuests": 2,
+      "amenities": ["免费WiFi", "空调", "电视", "独立卫浴", "迷你吧", "会客厅"]
+    },
+    { 
+      "id": 5, 
+      "name": "家庭套房",
+      "basePrice": 1599,
+      "size": "75㎡",
+      "bedType": "大床+双床",
+      "maxGuests": 4,
+      "amenities": ["免费WiFi", "空调", "电视", "独立卫浴", "迷你吧", "厨房"]
+    },
+    { 
+      "id": 6, 
+      "name": "总统套房",
+      "basePrice": 2999,
+      "size": "120㎡",
+      "bedType": "豪华大床",
+      "maxGuests": 4,
+      "amenities": ["免费WiFi", "空调", "电视", "独立卫浴", "迷你吧", "会客厅", "厨房", "管家服务"]
+    }
+  ],
+  "rooms": [
+    {
+      "id": 1,
+      "hotelId": 1,
+      "hotelName": "皇冠假日酒店",
+      "number": "1201",
+      "typeId": 4,
+      "type": "豪华套房",
+      "price": 1299,
+      "status": 0,
+      "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427",
+      "features": ["大床", "窗景", "免费早餐", "WiFi", "健身房"],
+      "isHot": true,
+      "floor": 12,
+      "maxGuests": 2,
+      "description": "豪华装修，景观房，配备高档设施"
+    },
+    {
+      "id": 2,
+      "hotelId": 2,
+      "hotelName": "希尔顿酒店",
+      "number": "1502",
+      "type": "商务套房",
+      "price": 666,
+      "status": 1,
+      "image": "https://images.unsplash.com/photo-1591088398332-8a7791972843",
+      "features": ["双床", "办公区", "高层", "商务中心"],
+      "isHot": false,
+      "floor": 15,
+      "maxGuests": 2,
+      "description": "适合商务人士，配备办公设施"
+    },
+    {
+      "id": 3,
+      "hotelId": 3,
+      "hotelName": "香格里拉酒店",
+      "number": "1803",
+      "type": "总统套房",
+      "price": 1888,
+      "status": 0,
+      "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+      "features": ["豪华大床", "会客厅", "管家服务", "SPA"],
+      "isHot": true,
+      "floor": 18,
+      "maxGuests": 4,
+      "description": "奢华体验，尊贵享受"
+    },
+    {
+      "id": 20,
+      "hotelId": 8,
+      "hotelName": "文华东方",
+      "number": "2008",
+      "typeId": 6,
+      "type": "总统套房",
+      "price": 2999,
+      "status": 0,
+      "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+      "features": ["豪华大床", "会客厅", "管家服务", "SPA", "私人泳池"],
+      "isHot": true,
+      "floor": 20,
+      "maxGuests": 4,
+      "description": "顶级奢华体验，尽享尊贵服务"
+    }
+  ]
+}

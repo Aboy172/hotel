@@ -1,0 +1,71 @@
+{
+  "announcements": [
+    {
+      "id": 1,
+      "hotels": {
+        "hotelId": 1,
+        "hotelName": "皇冠假日酒店"
+      },
+      "message": "尊敬的客人，我们酒店将于下周六举办大型音乐晚会，欢迎您参加。",
+      "createdAt": "2024-10-30",
+      "status": 1
+    },
+    {
+      "id": 2,
+      "hotels": {
+        "hotelId": 2,
+        "hotelName": "希尔顿酒店"
+      },
+      "message": "我们的餐厅推出了新的季节性菜单，包含多种当地特色美食，欢迎品尝。",
+      "createdAt": "2024-10-31",
+      "status": 1
+    },
+    {
+      "id": 3,
+      "hotels": {
+        "hotelId": 1,
+        "hotelName": "皇冠假日酒店"
+      },
+      "message": "游泳池将于11月1日至11月3日进行维护，期间暂停开放，给您带来不便，敬请谅解。",
+      "createdAt": "2024-11-01",
+      "status": 1
+    },
+    {
+      "id": 4,
+      "hotels": {
+        "hotelId": 3,
+        "hotelName": "万豪酒店"
+      },
+      "message": "双十一特惠活动即将开始，预订豪华套房享受8折优惠，活动时间11月1日至11月15日。",
+      "createdAt": "2024-11-02",
+      "status": 1
+    },
+    {
+      "id": 5,
+      "hotels": {
+        "hotelId": 2,
+        "hotelName": "希尔顿酒店"
+      },
+      "message": "酒店将于11月10日举办感恩节主题自助晚餐，每位客人可获赠一杯香槟。",
+      "createdAt": "2024-11-05",
+      "status": 1
+    }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "name": "皇冠假日酒店",
+      "address": "北京市朝阳区建国路88号"
+    },
+    {
+      "id": 2,
+      "name": "希尔顿酒店",
+      "address": "上海市浦东新区世纪大道100号"
+    },
+    {
+      "id": 3,
+      "name": "万豪酒店",
+      "address": "广州市天河区珠江新城冼村路12号"
+    }
+  ]
+} 

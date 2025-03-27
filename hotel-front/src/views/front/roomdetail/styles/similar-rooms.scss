@@ -1,0 +1,115 @@
+// 变量定义
+$primary-color: #409EFF;
+$success-color: #67c23a;
+$warning-color: #e6a23c;
+$danger-color: #f56c6c;
+$text-primary: #303133;
+$text-regular: #606266;
+$text-secondary: #909399;
+$border-color: #EBEEF5;
+$background-color: #F5F7FA;
+
+// 相似房间推荐样式
+.similar-rooms {
+  margin-bottom: 50px;
+  
+  .section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    
+    i {
+      margin-right: 10px;
+      color: $primary-color;
+    }
+  }
+  
+  .similar-room-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    
+    .similar-room-item {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      
+      &:hover {
+        transform: translateY(-5px);
+      }
+      
+      .similar-room-image {
+        position: relative;
+        height: 180px;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        
+        .similar-room-status {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          padding: 4px 10px;
+          border-radius: 15px;
+          color: white;
+          font-size: 12px;
+          
+          &.available {
+            background-color: $success-color;
+          }
+          
+          &.occupied {
+            background-color: $danger-color;
+          }
+        }
+      }
+      
+      .similar-room-info {
+        padding: 15px;
+        
+        .similar-room-title {
+          font-size: 18px;
+          font-weight: 600;
+          margin: 0 0 10px;
+          color: $text-primary;
+        }
+        
+        .similar-room-meta {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 15px;
+          
+          .similar-room-number {
+            color: $text-regular;
+          }
+          
+          .similar-room-price {
+            color: $danger-color;
+            font-weight: 600;
+          }
+        }
+        
+        .similar-room-actions {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .similar-rooms {
+    .similar-room-list {
+      grid-template-columns: 1fr;
+    }
+  }
+} 

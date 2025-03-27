@@ -1,0 +1,103 @@
+
+spring:
+
+  # jackson
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/hotels?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+          username: ${MYSQL_USERNAME:root}
+          password: ${MYSQL_PASSWORD:root}
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat,wall,config
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+      web-stat-filter:
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        allow: 127.0.0.1
+        deny:
+        #        login-username: root
+        #        login-password: root
+        reset-enable: false
+        enabled: true
+
+  mvc:
+    static-path-pattern: /static/**
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: LEGACYHTML5
+    encoding: utf-8
+    cache: false
+    servlet:
+      content-type: text/html
+
+  redis:
+    database: 0
+    host: ${REDIS_HOST:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    timeout: 10000
+
+#MybatisPlus设置
+mybatis-plus:
+  check-config-location: false
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.kalvin.kvf.entity.*
+  configuration:
+    map-underscore-to-camel-case: true
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+
+  global-config:
+    db-config:
+      id-type: auto
+      table-underline: true
+#自行配置阿里云oss
+aliyun:
+  oss:
+    end-point: xxxxx
+    access-key-id: xxxxx
+    access-key-secret: xxxxx
+    bucket-name: xxxxx
+
+kvf:
+  login:
+    authcode:
+      enable: true
+      dynamic: true
+  quartz:
+    enable: false
+  cache:
+    enable: false

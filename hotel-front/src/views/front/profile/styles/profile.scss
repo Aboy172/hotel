@@ -1,0 +1,415 @@
+// 变量定义
+$primary-color: #409EFF;
+$success-color: #67c23a;
+$warning-color: #e6a23c;
+$danger-color: #f56c6c;
+$text-primary: #303133;
+$text-regular: #606266;
+$text-secondary: #909399;
+$border-color: #EBEEF5;
+$background-color: #F5F7FA;
+
+// 页面标题横幅
+.page-banner {
+  width: 100%;
+  background: url('https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-size: cover;
+  background-position: center;
+  padding: 120px 0; // 调整高度与其他页面一致
+  text-align: center;
+  margin-top: 88px; // 与其他页面保持一致
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  h1 {
+    color: white;
+    font-size: 36px;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+  }
+}
+
+// 主容器
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  min-height: calc(100vh - 400px);
+  animation: fadeIn 0.5s ease-out;
+}
+
+// 个人信息容器
+.profile-container {
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+// 左侧导航
+.profile-sidebar {
+  width: 260px;
+  background: #f8f9fa;
+  border-right: 1px solid $border-color;
+  
+  .user-info {
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid $border-color;
+    
+    .avatar-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 15px;
+      
+      .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      .avatar-upload {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        background: $primary-color;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+        
+        i {
+          color: white;
+          font-size: 14px;
+        }
+        
+        .avatar-input {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          cursor: pointer;
+        }
+      }
+    }
+    
+    .username {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0 0 5px;
+      color: $text-primary;
+    }
+    
+    .user-level {
+      color: $warning-color;
+      font-size: 14px;
+      margin: 0;
+      
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+  
+  .nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-left: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      
+      i {
+        margin-right: 10px;
+        font-size: 18px;
+        width: 20px;
+        text-align: center;
+      }
+      
+      &:hover {
+        background: rgba(64, 158, 255, 0.1);
+        color: $primary-color;
+      }
+      
+      &.active {
+        background: rgba(64, 158, 255, 0.1);
+        color: $primary-color;
+        border-left-color: $primary-color;
+      }
+    }
+  }
+}
+
+// 右侧内容区
+.profile-content {
+  flex: 1;
+  padding: 30px;
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 20px;
+    color: $text-primary;
+    display: flex;
+    align-items: center;
+    
+    i {
+      margin-right: 10px;
+      color: $primary-color;
+    }
+  }
+  
+  .profile-form {
+    max-width: 600px;
+    
+    .el-form-item__label {
+      font-weight: 500;
+    }
+    
+    .el-input, .el-select, .el-date-editor {
+      width: 100%;
+    }
+    
+    .el-button {
+      min-width: 120px;
+    }
+  }
+  
+  .bind-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    span {
+      flex: 1;
+    }
+  }
+  
+  .security-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $border-color;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .item-title {
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      
+      i {
+        margin-right: 10px;
+        color: $primary-color;
+      }
+    }
+    
+    .item-content {
+      color: $text-secondary;
+      margin-bottom: 15px;
+    }
+  }
+  
+  .contacts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      color: $text-primary;
+      display: flex;
+      align-items: center;
+      
+      i {
+        margin-right: 10px;
+        color: $primary-color;
+      }
+    }
+  }
+  
+  .contacts-list {
+    margin-bottom: 20px;
+  }
+  
+  .empty-contacts {
+    text-align: center;
+    padding: 40px 0;
+    color: $text-secondary;
+    
+    i {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: $border-color;
+    }
+    
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// 动画关键帧
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 添加更多动画 */
+.profile-sidebar {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.profile-content {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.nav-menu li {
+  animation: slideIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.nav-menu li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.nav-menu li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.nav-menu li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.form-group {
+  animation: fadeIn 0.5s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.2s;
+}
+
+.contact-card {
+  animation: fadeIn 0.5s ease-out, slideIn 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.contact-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.contact-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.contact-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.el-button {
+  transition: all 0.3s ease;
+}
+
+.el-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.el-button:active {
+  transform: translateY(0);
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .profile-container {
+    flex-direction: column;
+  }
+  
+  .profile-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid $border-color;
+    
+    .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      
+      li {
+        flex: 1;
+        text-align: center;
+        padding: 15px 10px;
+        
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  
+  .profile-content {
+    padding: 20px;
+  }
+} 

@@ -1,0 +1,60 @@
+{
+  "roomImages": [
+    "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "name": "张先生",
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+      "date": "2023-05-15",
+      "rating": 5,
+      "content": "房间非常干净舒适，服务也很周到。窗外的景色很美，下次还会选择这里。"
+    },
+    {
+      "id": 2,
+      "name": "李女士",
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
+      "date": "2023-05-10",
+      "rating": 4,
+      "content": "整体体验不错，房间宽敞明亮，设施齐全。唯一的小缺点是空调有点吵，但不影响休息。"
+    },
+    {
+      "id": 3,
+      "name": "王先生",
+      "avatar": "https://randomuser.me/api/portraits/men/68.jpg",
+      "date": "2023-05-05",
+      "rating": 5,
+      "content": "服务一流，前台接待非常热情。房间干净整洁，床很舒服，睡得很香。"
+    }
+  ],
+  "similarRooms": [
+    {
+      "id": 101,
+      "title": "豪华大床房",
+      "number": "1202",
+      "price": 1199,
+      "status": 0,
+      "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": 102,
+      "title": "豪华双床房",
+      "number": "1203",
+      "price": 1299,
+      "status": 1,
+      "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": 103,
+      "title": "行政套房",
+      "number": "1301",
+      "price": 1599,
+      "status": 0,
+      "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+    }
+  ]
+} 

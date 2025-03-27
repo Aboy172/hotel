@@ -1,0 +1,54 @@
+{
+  "userInfo": {
+    "id": 1,
+    "username": "user123",
+    "avatar": "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+    "realName": "张三",
+    "phone": "13800138000",
+    "email": "zhangsan@example.com",
+    "gender": "男",
+    "birthday": "1990-01-01",
+    "level": "钻石会员",
+    "points": 1250,
+    "registerDate": "2020-05-15"
+  },
+  "contacts": [
+    {
+      "id": 1,
+      "name": "李四",
+      "relation": "朋友",
+      "phone": "13900139000",
+      "email": "lisi@example.com",
+      "idType": 1,
+      "idNumber": "110101199003078888",
+      "isDefault": true
+    },
+    {
+      "id": 2,
+      "name": "王五",
+      "relation": "同事",
+      "phone": "13700137000",
+      "email": "wangwu@example.com",
+      "idType": 1,
+      "idNumber": "110101199104159999",
+      "isDefault": false
+    },
+    {
+      "id": 3,
+      "name": "赵六",
+      "relation": "家人",
+      "phone": "13600136000",
+      "email": "zhaoliu@example.com",
+      "idType": 1,
+      "idNumber": "110101199209237777",
+      "isDefault": false
+    }
+  ],
+  "securitySettings": {
+    "passwordLastChanged": "2023-05-10",
+    "twoFactorEnabled": false,
+    "loginNotifications": true,
+    "lastLoginTime": "2023-10-15 14:30:22",
+    "lastLoginIP": "192.168.1.100"
+  }
+} 

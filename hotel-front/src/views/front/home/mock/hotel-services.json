@@ -1,0 +1,40 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "title": "24小时前台",
+      "description": "我们的前台全天候为您提供服务，随时解决您的问题和需求",
+      "icon": "el-icon-service"
+    },
+    {
+      "id": 2,
+      "title": "免费WiFi",
+      "description": "酒店内所有区域均覆盖高速WiFi，让您随时保持连接",
+      "icon": "el-icon-connection"
+    },
+    {
+      "id": 3,
+      "title": "健身中心",
+      "description": "配备先进的健身设备，让您在旅途中也能保持健康的生活方式",
+      "icon": "el-icon-trophy"
+    },
+    {
+      "id": 4,
+      "title": "餐饮服务",
+      "description": "提供多样化的餐饮选择，满足您的味蕾需求",
+      "icon": "el-icon-dish"
+    },
+    {
+      "id": 5,
+      "title": "会议室",
+      "description": "专业的会议设施，为您的商务活动提供完美场所",
+      "icon": "el-icon-office-building"
+    },
+    {
+      "id": 6,
+      "title": "接送服务",
+      "description": "提供机场和火车站接送服务，让您的旅程更加便捷",
+      "icon": "el-icon-truck"
+    }
+  ]
+} 

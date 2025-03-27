@@ -1,0 +1,134 @@
+.hotel-services {
+  padding: 60px 0;
+  background-color: #fff;
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+    
+    h2 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section-divider {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      
+      span {
+        width: 80px;
+        height: 3px;
+        background-color: #409EFF;
+        opacity: 0;
+        transform: scaleX(0);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition-delay: 0.1s;
+        
+        &.visible {
+          opacity: 1;
+          transform: scaleX(1);
+        }
+      }
+    }
+    
+    .section-description {
+      font-size: 16px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition-delay: 0.15s;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  .services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    
+    .service-item {
+      text-align: center;
+      padding: 30px 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) {
+          transition-delay: #{0.03 * $i}s;
+        }
+      }
+      
+      .service-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background-color: #409EFF;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        i {
+          font-size: 36px;
+          color: white;
+        }
+      }
+      
+      h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+      
+      p {
+        color: #666;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hotel-services {
+    padding: 40px 20px;
+    
+    .services-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+} 

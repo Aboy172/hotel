@@ -1,0 +1,203 @@
+.featured-rooms {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+    
+    h2 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section-divider {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      
+      span {
+        width: 80px;
+        height: 3px;
+        background-color: #409EFF;
+        opacity: 0;
+        transform: scaleX(0);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition-delay: 0.1s;
+        
+        &.visible {
+          opacity: 1;
+          transform: scaleX(1);
+        }
+      }
+    }
+    
+    .section-description {
+      font-size: 16px;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition-delay: 0.15s;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  .room-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .room-card {
+      width: 350px;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+      
+      &:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      
+      &:nth-child(2) {
+        transition-delay: 0.1s;
+      }
+      
+      &:nth-child(3) {
+        transition-delay: 0.15s;
+      }
+      
+      .room-image {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.5s ease;
+        }
+        
+        &:hover img {
+          transform: scale(1.05);
+        }
+        
+        .room-price {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          background-color: rgba(64, 158, 255, 0.9);
+          color: white;
+          padding: 8px 15px;
+          font-size: 14px;
+          
+          span {
+            font-size: 20px;
+            font-weight: bold;
+          }
+        }
+      }
+      
+      .room-info {
+        padding: 20px;
+        
+        h3 {
+          font-size: 20px;
+          margin: 0 0 10px;
+          color: #333;
+        }
+        
+        p {
+          color: #666;
+          margin-bottom: 15px;
+          height: 40px;
+        }
+        
+        .room-features {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          
+          span {
+            color: #666;
+            font-size: 14px;
+            
+            i {
+              color: #409EFF;
+              margin-right: 5px;
+            }
+          }
+        }
+        
+        .el-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  .view-more {
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition-delay: 0.2s;
+    
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .el-button {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-rooms {
+    padding: 40px 20px;
+    
+    .room-cards {
+      gap: 20px;
+      
+      .room-card {
+        width: 100%;
+      }
+    }
+  }
+} 

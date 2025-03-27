@@ -1,0 +1,75 @@
+{
+  "orders": [
+    {
+      "orderId": 41,
+      "hotelName": "经济型旅馆",
+      "roomType": "经济单人间",
+      "price": 1200,
+      "checkInDate": "2024-10-27",
+      "checkOutDate": "2024-10-30",
+      "status": "paid",
+      "isEvaluated": true
+    },
+    {
+      "orderId": 42,
+      "hotelName": "豪华大酒店",
+      "roomType": "豪华套房",
+      "price": 1200,
+      "checkInDate": "2024-10-27",
+      "checkOutDate": "2024-10-30",
+      "status": "paid",
+      "isEvaluated": true
+    },
+    {
+      "orderId": 43,
+      "hotelName": "豪华大酒店",
+      "roomType": "标准间",
+      "price": 800,
+      "checkInDate": "2024-10-27",
+      "checkOutDate": "2024-10-30",
+      "status": "paid",
+      "isEvaluated": true
+    },
+    {
+      "orderId": 44,
+      "hotelName": "海滨度假村",
+      "roomType": "海景房",
+      "price": 1500,
+      "checkInDate": "2024-11-22",
+      "checkOutDate": "2024-11-25",
+      "status": "checkout",
+      "isEvaluated": false
+    },
+    {
+      "orderId": 45,
+      "hotelName": "豪华大酒店",
+      "roomType": "豪华套房",
+      "price": 1200,
+      "checkInDate": "2025-03-22",
+      "checkOutDate": "2025-03-25",
+      "status": "booked",
+      "isEvaluated": false
+    },
+    {
+      "orderId": 46,
+      "hotelName": "豪华大酒店",
+      "roomType": "标准间",
+      "price": 800,
+      "checkInDate": "2025-03-22",
+      "checkOutDate": "2025-03-25",
+      "status": "booked",
+      "isEvaluated": false
+    }
+  ],
+  "hotelOptions": [
+    { "value": "经济型旅馆", "label": "经济型旅馆" },
+    { "value": "豪华大酒店", "label": "豪华大酒店" },
+    { "value": "海滨度假村", "label": "海滨度假村" }
+  ],
+  "statusOptions": [
+    { "value": "booked", "label": "已入住" },
+    { "value": "checkout", "label": "已退房" },
+    { "value": "paid", "label": "已评价" },
+    { "value": "cancelled", "label": "已取消" }
+  ]
+} 

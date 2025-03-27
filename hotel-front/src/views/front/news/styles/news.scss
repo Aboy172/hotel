@@ -1,0 +1,603 @@
+// 变量定义
+$primary-color: #409EFF;
+$success-color: #67c23a;
+$warning-color: #e6a23c;
+$danger-color: #f56c6c;
+$text-primary: #303133;
+$text-regular: #606266;
+$text-secondary: #909399;
+$border-color: #EBEEF5;
+$background-color: #F5F7FA;
+
+// 搜索横幅
+.search-banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 60px 0;
+  color: white;
+  text-align: center;
+  margin-top: 88px; // 与房间列表页面保持一致
+  width: 100%; // 确保横幅铺满整个宽度
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .banner-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 0.8s ease-out;
+
+    h1 {
+      font-size: 32px;
+      margin: 0 0 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 16px;
+      margin: 0 0 30px;
+      opacity: 0.9;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .search-box {
+      display: flex;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+
+      .el-input {
+        flex: 1;
+        margin-right: 10px;
+
+        /deep/ .el-input__inner {
+          height: 50px;
+          border-radius: 4px;
+          border: none;
+          padding-left: 45px;
+          font-size: 16px;
+          transition: all 0.3s;
+          
+          &:focus {
+            box-shadow: inset 0 0 0 2px $primary-color;
+          }
+        }
+        
+        /deep/ .el-input__prefix {
+          left: 15px;
+          font-size: 18px;
+          color: #909399;
+        }
+      }
+
+      .el-button {
+        height: 50px;
+        padding: 0 25px;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        transition: all 0.3s;
+        
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(64, 158, 255, 0.4);
+        }
+        
+        &:active {
+          transform: translateY(1px);
+        }
+      }
+    }
+  }
+}
+
+// 主容器
+.main-container {
+  width: 100%; // 铺满整个宽度
+  margin: 0;
+  padding: 20px 40px; // 增加左右内边距
+  min-height: calc(100vh - 400px);
+  display: flex;
+  gap: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// 筛选条件
+.filter-section {
+  background: #f5f7fa;
+  border-radius: 4px;
+  padding: 20px;
+  height: fit-content;
+  width: 320px; // 进一步增加筛选区域宽度
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s;
+  
+  &:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .filter-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    color: #303133;
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: '\e78b'; // 使用Element UI的筛选图标
+      font-family: 'element-icons';
+      margin-right: 8px;
+      font-size: 18px;
+      color: #409EFF;
+    }
+  }
+
+  .reset-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #409EFF;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: '\e6aa'; // 使用Element UI的刷新图标
+      font-family: 'element-icons';
+      margin-right: 4px;
+      font-size: 14px;
+    }
+    
+    &:hover {
+      color: #66b1ff;
+    }
+    
+    &:active {
+      color: #3a8ee6;
+    }
+  }
+
+  .filter-row {
+    margin-bottom: 20px;
+
+    .filter-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #606266;
+      font-size: 15px; // 进一步增加字体大小
+      font-weight: 500;
+    }
+
+    .filter-select, .filter-date {
+      width: 100%;
+      /deep/ .el-input__inner {
+        height: 42px; // 进一步增加输入框高度
+        font-size: 15px; // 增加输入框字体大小
+        transition: all 0.3s;
+        
+        &:focus {
+          border-color: #409EFF;
+          box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+        }
+      }
+      
+      /deep/ .el-select-dropdown__item {
+        font-size: 15px;
+        padding: 0 15px;
+        height: 40px;
+        line-height: 40px;
+        
+        &.selected {
+          color: #409EFF;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+// 结果区域
+.result-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // 防止内容溢出
+  animation: fadeInRight 0.5s ease-out;
+}
+
+// 结果头部
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px; // 添加内边距
+  background: white;
+  border-radius: 4px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  .result-count {
+    color: #606266;
+    font-size: 17px; // 进一步增加字体大小
+    display: flex;
+    align-items: center;
+    
+    &::before {
+      content: '\e62d'; // 使用Element UI的文档图标
+      font-family: 'element-icons';
+      margin-right: 8px;
+      font-size: 20px;
+      color: #409EFF;
+    }
+
+    span {
+      color: #409EFF;
+      font-weight: 500;
+      font-size: 18px; // 强调数字
+      margin: 0 5px;
+    }
+  }
+
+  .sort-options {
+    span {
+      font-size: 15px;
+      margin-right: 10px;
+      color: #606266;
+    }
+    
+    .el-radio-button {
+      /deep/ .el-radio-button__inner {
+        padding: 10px 20px; // 增加按钮内边距
+        font-size: 15px; // 增加按钮字体大小
+        transition: all 0.3s;
+        
+        &:hover {
+          background-color: #ecf5ff;
+        }
+      }
+      
+      &.is-active /deep/ .el-radio-button__inner {
+        background-color: #409EFF;
+        border-color: #409EFF;
+        box-shadow: -1px 0 0 0 #409EFF;
+        color: white;
+      }
+    }
+  }
+}
+
+// 空状态
+.empty-state {
+  text-align: center;
+  padding: 60px 0;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+
+  i {
+    font-size: 48px;
+    color: #909399;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+  }
+
+  p {
+    font-size: 16px;
+    color: #606266;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  
+  .el-button {
+    padding: 12px 25px;
+    font-size: 16px;
+    transition: all 0.3s;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(64, 158, 255, 0.3);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// 公告列表
+.announcement-list {
+  flex: 1;
+  width: 100%; // 确保列表铺满可用空间
+  
+  .announcement-item {
+    background: white;
+    border-radius: 4px;
+    padding: 25px 30px; // 增加内边距
+    margin-bottom: 15px;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+    width: 100%; // 确保每个公告项铺满可用宽度
+    animation: fadeInUp 0.5s ease-out;
+    animation-fill-mode: both;
+    
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px); // 添加悬浮效果
+      background-color: #fafafa;
+    }
+
+    .hotel-name {
+      font-size: 20px; // 进一步增加字体大小
+      font-weight: 500;
+      color: #303133;
+      margin-bottom: 5px;
+      padding-right: 100px; // 为日期留出空间
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '\e7a5'; // 使用Element UI的酒店图标
+        font-family: 'element-icons';
+        margin-right: 10px;
+        font-size: 22px;
+        color: #409EFF;
+      }
+    }
+
+    .date {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #909399;
+      font-size: 15px; // 增加字体大小
+      background: #f5f7fa;
+      padding: 5px 10px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '\e78f'; // 使用Element UI的日历图标
+        font-family: 'element-icons';
+        margin-right: 5px;
+        font-size: 16px;
+      }
+    }
+
+    .announcement-content {
+      color: #606266;
+      line-height: 1.6;
+      margin: 10px 0;
+      padding-left: 25px;
+      position: relative;
+      font-size: 15px; // 增加字体大小
+      max-width: 100%; // 确保内容不溢出
+
+      i {
+        position: absolute;
+        left: 0;
+        top: 3px;
+        color: #409EFF;
+        font-size: 18px; // 增加图标大小
+        animation: pulse 2s infinite;
+      }
+    }
+
+    .action {
+      text-align: right;
+      margin-top: 10px;
+      border-top: 1px solid #f0f2f5;
+      padding-top: 15px;
+
+      .el-button {
+        font-size: 15px; // 增加按钮字体大小
+        padding: 10px 15px; // 增加按钮内边距
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s;
+        
+        &:hover {
+          color: #66b1ff;
+          transform: translateX(3px);
+          
+          &::after {
+            opacity: 1;
+            transform: translateX(3px);
+          }
+        }
+        
+        &::after {
+          content: '\e6e0'; // 使用Element UI的右箭头图标
+          font-family: 'element-icons';
+          margin-left: 5px;
+          font-size: 14px;
+          opacity: 0;
+          transform: translateX(0);
+          transition: all 0.3s;
+        }
+      }
+    }
+  }
+}
+
+// 分页
+.pagination-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 0.8s ease-out;
+
+  /deep/ .el-pagination {
+    font-size: 15px; // 增加分页字体大小
+    
+    .el-pager li {
+      min-width: 35px; // 增加分页按钮宽度
+      height: 35px; // 增加分页按钮高度
+      line-height: 35px;
+      transition: all 0.3s;
+      
+      &:hover {
+        color: #409EFF;
+        transform: translateY(-2px);
+      }
+      
+      &.active {
+        background-color: #409EFF;
+        color: white;
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(64, 158, 255, 0.4);
+      }
+    }
+    
+    .btn-prev, .btn-next {
+      padding: 0 10px;
+      height: 35px; // 增加分页按钮高度
+      transition: all 0.3s;
+      
+      &:hover {
+        color: #409EFF;
+        transform: translateY(-2px);
+      }
+      
+      &:disabled {
+        color: #c0c4cc;
+      }
+    }
+  }
+}
+
+// 动画关键帧
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// 响应式调整
+@media (max-width: 768px) {
+  .search-banner {
+    padding: 40px 0;
+
+    .banner-content {
+      h1 {
+        font-size: 24px;
+      }
+
+      .search-box {
+        flex-direction: column;
+
+        .el-input {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .main-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .filter-section {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .filter-section {
+    .filter-row {
+      .filter-select, .filter-date {
+        width: 100%;
+      }
+    }
+  }
+
+  .result-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .result-count {
+      margin-bottom: 10px;
+    }
+  }
+
+  .announcement-item {
+    .date {
+      position: static;
+      margin-bottom: 10px;
+      display: inline-flex;
+    }
+    
+    .hotel-name {
+      padding-right: 0;
+    }
+  }
+}
