@@ -2,7 +2,7 @@
 
 
 
-如果hotel-admin和hotel-front文件夹是空的，执行git submodule update --init --recursive命令就可以下载子模块代码了。
+
 
 
 
