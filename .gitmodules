@@ -1,6 +1,0 @@
-[submodule "hotel-admin"]
-	path = hotel-admin
-	url = git@github.com:Aboy172/hotel-admin.git
-[submodule "hotel-front"]
-	path = hotel-front
-	url = git@github.com:Aboy172/hotel-front.git
