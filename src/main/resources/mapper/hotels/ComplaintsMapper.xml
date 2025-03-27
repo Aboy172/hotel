@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.ComplaintsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Complaints">
+        <id column="complaint_id" property="complaintId" />
+        <result column="user_id" property="userId" />
+        <result column="hotel_id" property="hotelId" />
+        <result column="description" property="description" />
+        <result column="status" property="status" />
+        <result column="created_at" property="createdAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+       complaint_id, user_id, hotel_id, description, status, created_at
+    </sql>
+
+    <select id="selectComplaintsList" resultType="com.kalvin.hotel.modules.hotels.entity.Complaints">
+        select <include refid="Base_Column_List" /> from complaints
+        <trim prefix="where" prefixOverrides="and">
+            <if test="complaints.userId != null">
+                and user_id = #{complaints.userId}
+            </if>
+            <if test="complaints.hotelId != null">
+                and hotel_id = #{complaints.hotelId}
+            </if>
+            <if test="complaints.description != null">
+                and description = #{complaints.description}
+            </if>
+            <if test="complaints.status != null">
+                and status = #{complaints.status}
+            </if>
+            <if test="complaints.createdAt != null">
+                and created_at = #{complaints.createdAt}
+            </if>
+        </trim>
+    </select>
+
+</mapper>
