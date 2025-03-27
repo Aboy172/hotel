@@ -1,5 +1,11 @@
 # 酒店管理系统 
 
+
+
+如果hotel-admin和hotel-front文件夹是空的，执行git submodule update --init --recursive命令就可以下载子模块代码了。
+
+
+
 ## 介绍
 
 使用kalvin-admin模板进行的二次开发的酒店管理系统，数据可视化懒得弄了（有能力的小伙伴可以自己弄一下，很简单）拿去直接当毕设应该没有问题（优秀毕设除外）
@@ -58,11 +64,3 @@ npm run serve
 ````
 
 前台地址：http://localhost:8087
-
-
-
-## 最后
-
-给别人做的，中途被放鸽子了，所以就直接公开源代码了。代码很赶，能用就行。
-
-[后端注意事项](hotel-admin/README.md)
