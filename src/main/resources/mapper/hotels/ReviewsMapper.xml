@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.ReviewsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Reviews">
+        <id column="review_id" property="reviewId" />
+        <result column="user_id" property="userId" />
+        <result column="hotel_id" property="hotelId" />
+        <result column="rating" property="rating" />
+        <result column="comment" property="comment" />
+        <result column="created_at" property="createdAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+       review_id, user_id, hotel_id, rating, comment, created_at
+    </sql>
+
+    <select id="selectReviewsList" resultType="com.kalvin.hotel.modules.hotels.entity.Reviews">
+        select <include refid="Base_Column_List" /> from reviews
+        <trim prefix="where" prefixOverrides="and">
+            <if test="reviews.userId != null">
+                and user_id = #{reviews.userId}
+            </if>
+            <if test="reviews.hotelId != null">
+                and hotel_id = #{reviews.hotelId}
+            </if>
+            <if test="reviews.rating != null">
+                and rating = #{reviews.rating}
+            </if>
+            <if test="reviews.comment != null">
+                and comment = #{reviews.comment}
+            </if>
+            <if test="reviews.createdAt != null">
+                and created_at = #{reviews.createdAt}
+            </if>
+        </trim>
+    </select>
+
+</mapper>

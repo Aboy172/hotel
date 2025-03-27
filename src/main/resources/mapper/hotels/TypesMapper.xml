@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kalvin.hotel.modules.hotels.mapper.TypesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.kalvin.hotel.modules.hotels.entity.Types">
+        <id column="room_type_id" property="roomTypeId" />
+        <result column="hotel_id" property="hotelId" />
+        <result column="type_name" property="typeName" />
+        <result column="description" property="description" />
+        <result column="price" property="price" />
+        <result column="capacity" property="capacity" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+       room_type_id, hotel_id, type_name, description, price, capacity
+    </sql>
+
+    <select id="selectTypesList" resultType="com.kalvin.hotel.modules.hotels.entity.Types">
+        select <include refid="Base_Column_List" /> from room_types
+        <trim prefix="where" prefixOverrides="and">
+            <if test="types.hotelId != null">
+                and hotel_id = #{types.hotelId}
+            </if>
+            <if test="types.typeName != null and types.typeName != ''">
+                and type_name like concat(#{types.typeName}, "%")
+            </if>
+            <if test="types.description != null">
+                and description = #{types.description}
+            </if>
+            <if test="types.price != null">
+                and price = #{types.price}
+            </if>
+            <if test="types.capacity != null">
+                and capacity = #{types.capacity}
+            </if>
+        </trim>
+    </select>
+
+</mapper>
